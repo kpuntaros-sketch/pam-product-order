@@ -179,7 +179,11 @@ function exportCurrentOrder(){
  const d=getOrderData(), rows=d.items.map(x=>({
  'เลขที่คำสั่งซื้อ':d.orderNo,'วันที่':d.date.toLocaleString('th-TH'),'ลูกค้า':d.customerName,'เบอร์โทร':d.customerPhone,'ผู้ติดต่อ':d.contact,'หมายเหตุ':d.note,
  'รายการที่':x.itemNo,'สินค้า':x.product,'จำนวนชิ้น/แพ็ก':x.pack,'จำนวนซื้อ (แพ็ก)':x.qty,'ของแถมรายสินค้า':x.free,'Offer Price Ex.VAT':x.unitPriceExVat,'ราคาต่อแพ็ก รวม VAT':x.unitPriceVat,'ยอดชำระ':x.amount,
- 'ราคาเฉลี่ยต่อชิ้น':x.avgPiecePrice,'กลุ่มโปรรวม':x.promoGroup,'โปรโมชั่น':x.bonus
+ 'ราคาเฉลี่ยต่อชิ้น':(
+      Number(x.avgPiecePrice)>0
+        ? Number(x.avgPiecePrice)
+        : Number(x.amount||0)/((Number(x.qty||0)+Number(x.free||0))*Number(x.pack||1))
+    ),'กลุ่มโปรรวม':x.promoGroup,'โปรโมชั่น':x.bonus
  }));
  Object.entries(d.groupFree).forEach(([gid,x])=>rows.push({'เลขที่คำสั่งซื้อ':d.orderNo,'วันที่':d.date.toLocaleString('th-TH'),'ลูกค้า':d.customerName,'รายการที่':x.itemNo,'สินค้า':x.product,'จำนวนชิ้น/แพ็ก':(products.find(p=>p.itemNo==x.itemNo)?.pack||1),'จำนวนซื้อ (แพ็ก)':0,'ของแถมรายสินค้า':x.qty,'ยอดชำระ':0,'ราคาเฉลี่ยต่อชิ้น':0,'กลุ่มโปรรวม':gid,'โปรโมชั่น':'ของแถมจากโปรรวม'}));
  rows.push({'เลขที่คำสั่งซื้อ':d.orderNo,'สินค้า':'รวมทั้งออเดอร์','จำนวนซื้อ (แพ็ก)':d.items.reduce((s,x)=>s+x.qty,0),'ยอดชำระ':d.total});
@@ -192,7 +196,15 @@ function saveOrder(d){const h=JSON.parse(localStorage.getItem(ORDER_KEY)||'[]');
 function exportOrderHistory(){
  if(typeof XLSX==='undefined')return alert('ไม่สามารถโหลดระบบ Excel ได้');
  const h=JSON.parse(localStorage.getItem(ORDER_KEY)||'[]');if(!h.length)return alert('ยังไม่มีประวัติ');
- const rows=[];h.forEach(d=>d.items.forEach(x=>rows.push({'เลขที่คำสั่งซื้อ':d.orderNo,'วันที่':new Date(d.date).toLocaleString('th-TH'),'ลูกค้า':d.customerName,'รายการที่':x.itemNo,'สินค้า':x.product,'จำนวนชิ้น/แพ็ก':x.pack,'จำนวนซื้อ':x.qty,'ของแถม':x.free,'ยอดชำระ':x.amount,'ราคาเฉลี่ยต่อชิ้น':x.avgPiecePrice||0,'กลุ่มโปร':x.promoGroup})));
+ const rows=[];h.forEach(d=>d.items.forEach(x=>rows.push({'เลขที่คำสั่งซื้อ':d.orderNo,'วันที่':new Date(d.date).toLocaleString('th-TH'),'ลูกค้า':d.customerName,'รายการที่':x.itemNo,'สินค้า':x.product,'จำนวนชิ้น/แพ็ก':x.pack,'จำนวนซื้อ':x.qty,'ของแถม':x.free,'ยอดชำระ':x.amount,'ราคาเฉลี่ยต่อชิ้น':(
+    Number(x.avgPiecePrice)>0
+      ? Number(x.avgPiecePrice)
+      : (
+          Number(x.pack||1)>0 && (Number(x.qty||0)+Number(x.free||0))>0
+            ? Number(x.amount||0)/((Number(x.qty||0)+Number(x.free||0))*Number(x.pack||1))
+            : 0
+        )
+  ),'กลุ่มโปร':x.promoGroup})));
  const ws=XLSX.utils.json_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Orders');XLSX.writeFile(wb,`PAm_Order_History_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 renderProducts();renderCart();checkLogin();
