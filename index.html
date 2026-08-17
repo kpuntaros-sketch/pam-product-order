@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product Order — P'Am</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div><div class="brand">P'AM <span>PRODUCT ORDER</span></div><div class="sub">ระบบสั่งซื้อสินค้า</div></div>
+  <button class="cart-btn" onclick="toggleCart()">🛒 ตะกร้า <b id="cartCount">0</b></button>
+</header>
+<section class="hero">
+  <div><h1>รายการสินค้า</h1><p>เลือกสินค้า ระบุจำนวน แล้วเพิ่มลงตะกร้าได้ทันที</p></div>
+  <div class="legend"><span class="dot"></span> สินค้าขายดีจากไฟล์ต้นฉบับ</div>
+</section>
+<main>
+  <div class="toolbar">
+    <input id="search" placeholder="ค้นหาชื่อสินค้า..." oninput="renderProducts()">
+    <select id="filter" onchange="renderProducts()"><option value="all">สินค้าทั้งหมด</option><option value="best">⭐ สินค้าขายดี</option></select>
+  </div>
+  <div id="productGrid" class="grid"></div>
+</main>
+<aside id="cartPanel" class="cart">
+ <div class="cart-head"><h2>🛒 ตะกร้าสินค้า</h2><button onclick="toggleCart()">×</button></div>
+ <div id="cartItems"></div>
+ <div class="summary">
+   <div><span>ยอดสินค้า</span><b id="subtotal">฿0.00</b></div>
+   <div><span>ของแถม</span><b id="freeTotal">0 ชิ้น</b></div>
+   <div class="grand"><span>ยอดรวม</span><b id="grandTotal">฿0.00</b></div>
+   <button class="order-btn" onclick="showOrder()">สร้างรายการสั่งซื้อ</button>
+ </div>
+</aside>
+<div id="overlay" class="overlay" onclick="toggleCart()"></div>
+<div id="orderModal" class="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeOrder()">×</button>
+    <h2>สรุปรายการสั่งซื้อ</h2>
+
+    <div class="customer-form">
+      <h3>ข้อมูลลูกค้า</h3>
+      <div class="form-grid">
+        <input id="customerName" placeholder="ชื่อลูกค้า / โรงพยาบาล / ร้านค้า">
+        <input id="customerPhone" placeholder="เบอร์โทรศัพท์">
+        <input id="customerContact" placeholder="ชื่อผู้ติดต่อ">
+        <input id="customerNote" placeholder="หมายเหตุ / ที่อยู่จัดส่ง">
+      </div>
+    </div>
+
+    <div id="orderText"></div>
+
+    <div class="order-actions">
+      <button class="copy" onclick="copyOrder()">คัดลอกข้อความ</button>
+      <button class="excel" onclick="exportCurrentOrder()">📊 ดาวน์โหลด Excel</button>
+      <button class="history-btn" onclick="exportOrderHistory()">📚 Export ประวัติทั้งหมด</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+<script src="products.js"></script>
+<script src="script.js"></script>
+</body></html>
