@@ -195,16 +195,73 @@ function exportCurrentOrder(){
 function saveOrder(d){const h=JSON.parse(localStorage.getItem(ORDER_KEY)||'[]');h.push({...d,date:d.date.toISOString()});localStorage.setItem(ORDER_KEY,JSON.stringify(h.slice(-500)))}
 function exportOrderHistory(){
  if(typeof XLSX==='undefined')return alert('ไม่สามารถโหลดระบบ Excel ได้');
- const h=JSON.parse(localStorage.getItem(ORDER_KEY)||'[]');if(!h.length)return alert('ยังไม่มีประวัติ');
- const rows=[];h.forEach(d=>d.items.forEach(x=>rows.push({'เลขที่คำสั่งซื้อ':d.orderNo,'วันที่':new Date(d.date).toLocaleString('th-TH'),'ลูกค้า':d.customerName,'รายการที่':x.itemNo,'สินค้า':x.product,'จำนวนชิ้น/แพ็ก':x.pack,'จำนวนซื้อ':x.qty,'ของแถม':x.free,'ยอดชำระ':x.amount,'ราคาเฉลี่ยต่อชิ้น':(
-    Number(x.avgPiecePrice)>0
-      ? Number(x.avgPiecePrice)
-      : (
-          Number(x.pack||1)>0 && (Number(x.qty||0)+Number(x.free||0))>0
-            ? Number(x.amount||0)/((Number(x.qty||0)+Number(x.free||0))*Number(x.pack||1))
-            : 0
-        )
-  ),'กลุ่มโปร':x.promoGroup})));
- const ws=XLSX.utils.json_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Orders');XLSX.writeFile(wb,`PAm_Order_History_${new Date().toISOString().slice(0,10)}.xlsx`);
+ const h=JSON.parse(localStorage.getItem(ORDER_KEY)||'[]');
+ if(!h.length)return alert('ยังไม่มีประวัติ');
+
+ const rows=[];
+
+ h.forEach(d=>{
+   d.items.forEach(x=>{
+     const productRef=products.find(p=>Number(p.itemNo)===Number(x.itemNo));
+     const packSize=Number(x.pack||productRef?.pack||1);
+     const qty=Number(x.qty||0);
+     const free=Number(x.free||0);
+     const amount=Number(x.amount||0);
+
+     // จำนวนชิ้นที่ได้รับจริงสำหรับรายการนั้น
+     const totalPieces=(qty+free)*packSize;
+
+     // ถ้ามีค่าที่บันทึกใหม่และมากกว่า 0 ใช้ได้
+     // ถ้าเป็นข้อมูลเก่า ให้คำนวณใหม่จากยอดชำระ / จำนวนชิ้นที่ได้รับ
+     let avgPiece=Number(x.avgPiecePrice||0);
+     if(!(avgPiece>0) && totalPieces>0){
+       avgPiece=amount/totalPieces;
+     }
+
+     rows.push({
+       'เลขที่คำสั่งซื้อ':d.orderNo,
+       'วันที่':new Date(d.date).toLocaleString('th-TH'),
+       'ลูกค้า':d.customerName,
+       'รายการที่':x.itemNo,
+       'สินค้า':x.product,
+       'จำนวนชิ้น/แพ็ก':packSize,
+       'จำนวนซื้อ':qty,
+       'ของแถม':free,
+       'ยอดชำระ':amount,
+       'ราคาเฉลี่ยต่อชิ้น':avgPiece,
+       'กลุ่มโปร':x.promoGroup||''
+     });
+   });
+
+   // เพิ่มของแถมจากโปรรวมเป็นแถวแยก
+   if(d.groupFree){
+     Object.entries(d.groupFree).forEach(([gid,gift])=>{
+       const productRef=products.find(p=>Number(p.itemNo)===Number(gift.itemNo));
+       const packSize=Number(productRef?.pack||1);
+       rows.push({
+         'เลขที่คำสั่งซื้อ':d.orderNo,
+         'วันที่':new Date(d.date).toLocaleString('th-TH'),
+         'ลูกค้า':d.customerName,
+         'รายการที่':gift.itemNo,
+         'สินค้า':gift.product,
+         'จำนวนชิ้น/แพ็ก':packSize,
+         'จำนวนซื้อ':0,
+         'ของแถม':Number(gift.qty||0),
+         'ยอดชำระ':0,
+         'ราคาเฉลี่ยต่อชิ้น':0,
+         'กลุ่มโปร':gid
+       });
+     });
+   }
+ });
+
+ const ws=XLSX.utils.json_to_sheet(rows);
+ ws['!cols']=[
+   {wch:22},{wch:22},{wch:22},{wch:12},{wch:42},
+   {wch:16},{wch:14},{wch:14},{wch:18},{wch:22},{wch:18}
+ ];
+ const wb=XLSX.utils.book_new();
+ XLSX.utils.book_append_sheet(wb,ws,'Orders');
+ XLSX.writeFile(wb,`PAm_Order_History_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
 renderProducts();renderCart();checkLogin();
