@@ -68,7 +68,7 @@ function renderProducts(){
  <div class="pic">${p.image?`<img src="${p.image}" alt="${p.name}" onerror="this.style.display='none'">`:'<span>ไม่มีรูป</span>'}</div>
  <div class="body">
   <div class="name"><span class="item-no">#${p.itemNo}</span> ${p.name}</div>
-  <div class="meta">บรรจุ ${p.pack} ชิ้น/แพ็ก · LTP ฿${Number(p.ltp).toLocaleString()}</div>
+  <div class="meta">บรรจุ ${p.pack} ชิ้น/แพ็ก</div>
   <div class="price">${money(chargeUnitVat(p))} <small class="muted">/ แพ็ก รวม VAT</small></div>
   <div class="bonus ${p.promoGroup?'group-bonus':''}">${p.promoGroup?'🔗 '+groupLabel(p.promoGroup):(p.bonus?'🎁 '+clean(p.bonus):'ไม่มีโปรโมชั่นของแถม')}</div>
   <div class="buy"><input class="qty" id="q-${p.id}" type="number" min="0" step="1" value="${cart[p.id]?.qty||0}">
