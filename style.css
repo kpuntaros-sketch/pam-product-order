@@ -47,3 +47,21 @@
 .free-choice label{display:block;margin:8px 0 5px;font-size:13px}
 .free-choice select{width:100%;padding:10px;border:1px solid #ccc;border-radius:8px;background:white}
 .item-no{font-size:12px;background:#222;color:#fff;border-radius:5px;padding:2px 5px}
+
+body.locked{overflow:hidden}
+.login-screen{position:fixed;inset:0;z-index:99999;display:flex;align-items:center;justify-content:center;padding:20px;background:linear-gradient(135deg,#f4f6f8,#e6ebf2)}
+.login-screen.hidden{display:none}
+.login-card{width:min(420px,100%);background:#fff;border-radius:20px;padding:32px;box-shadow:0 18px 60px rgba(0,0,0,.14)}
+.login-logo{display:inline-block;font-size:28px;font-weight:900;letter-spacing:1px;margin-bottom:8px}
+.login-card h1{margin:0 0 6px}.login-card p{margin:0 0 24px;color:#6b7280}
+.login-card label{display:block;margin:12px 0 6px;font-weight:700}
+.login-card input{width:100%;box-sizing:border-box;padding:12px 14px;border:1px solid #d5d9df;border-radius:10px;font-size:16px}
+.login-submit{width:100%;margin-top:18px;padding:13px;border:0;border-radius:10px;background:#111827;color:#fff;font-weight:800;font-size:16px;cursor:pointer}
+.login-error{min-height:20px;margin-top:8px;color:#c62828;font-size:14px}
+.top-actions{display:flex;gap:8px;align-items:center}
+.logout-btn{border:1px solid rgba(255,255,255,.45);background:transparent;color:inherit;padding:9px 12px;border-radius:9px;cursor:pointer}
+.free-choice-title{font-size:17px;font-weight:800;margin-bottom:4px}
+.free-choice-note{font-size:13px;color:#6b5b18;margin-bottom:10px}
+.free-choice label{display:block;margin:8px 0 6px;font-weight:700}
+.free-choice select{width:100%;padding:11px;border:1px solid #c9b75e;border-radius:9px;background:#fff;font-size:15px}
+.free-qty{margin-top:8px}

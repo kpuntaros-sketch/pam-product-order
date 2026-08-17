@@ -7,9 +7,29 @@
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
+<div id="loginScreen" class="login-screen">
+  <div class="login-card">
+    <div class="login-logo">P'AM</div>
+    <h1>Product Order</h1>
+    <p>กรุณาเข้าสู่ระบบก่อนใช้งาน</p>
+    <form onsubmit="login(event)">
+      <label>User name</label>
+      <input id="loginUsername" type="text" autocomplete="username" placeholder="User name" required>
+      <label>Password</label>
+      <input id="loginPassword" type="password" autocomplete="current-password" placeholder="Password" required>
+      <div id="loginError" class="login-error"></div>
+      <button type="submit" class="login-submit">เข้าสู่ระบบ</button>
+    </form>
+  </div>
+</div>
+
 <header class="topbar">
   <div><div class="brand">P'AM <span>PRODUCT ORDER</span></div><div class="sub">ระบบสั่งซื้อสินค้า</div></div>
+  <div class="top-actions">
+  <button class="logout-btn" onclick="logout()">ออกจากระบบ</button>
   <button class="cart-btn" onclick="toggleCart()">🛒 ตะกร้า <b id="cartCount">0</b></button>
+</div>
 </header>
 <section class="hero">
   <div><h1>รายการสินค้า</h1><p>เลือกสินค้า ระบุจำนวน แล้วเพิ่มลงตะกร้าได้ทันที</p></div>

@@ -1,3 +1,34 @@
+
+const LOGIN_KEY='pam_logged_in_v1';
+const APP_USER='login001';
+const APP_PASS='1234';
+
+function checkLogin(){
+  const logged=sessionStorage.getItem(LOGIN_KEY)==='1';
+  const screen=document.getElementById('loginScreen');
+  if(screen) screen.classList.toggle('hidden', logged);
+  document.body.classList.toggle('locked', !logged);
+}
+function login(e){
+  e.preventDefault();
+  const u=document.getElementById('loginUsername').value.trim();
+  const p=document.getElementById('loginPassword').value;
+  const err=document.getElementById('loginError');
+  if(u===APP_USER && p===APP_PASS){
+    sessionStorage.setItem(LOGIN_KEY,'1');
+    if(err) err.textContent='';
+    checkLogin();
+  }else{
+    if(err) err.textContent='User name หรือ Password ไม่ถูกต้อง';
+  }
+}
+function logout(){
+  sessionStorage.removeItem(LOGIN_KEY);
+  Object.keys(cart).forEach(k=>delete cart[k]);
+  renderCart();
+  checkLogin();
+}
+
 const cart={};
 const ORDER_KEY='pam_orders_group_v1';
 
@@ -88,8 +119,13 @@ function freeSelectors(){
  return activeGroupIds().map(gid=>{
   const g=promoGroups[gid], free=groupFree(gid);
   const opts=products.filter(p=>p.promoGroup===gid).map(p=>`<option value="${p.id}">#${p.itemNo} ${p.name}</option>`).join('');
-  return `<div class="free-choice"><b>🎁 โปรรวมรายการ ${g.members.join(', ')}: ได้ของแถม ${free} แพ็ก</b>
-  <label>เลือกสินค้าที่ต้องการรับเป็นของแถม</label><select id="free-${gid}">${opts}</select></div>`;
+  return `<div class="free-choice">
+    <div class="free-choice-title">🎁 เลือกสินค้าของแถม</div>
+    <div class="free-choice-note">โปรรวมรายการ ${g.members.join(', ')} ครบ ${g.buy} แพ็ก → ได้ของแถม ${free} แพ็ก</div>
+    <label for="free-${gid}">ต้องการรับสินค้าตัวไหนเป็นของแถม?</label>
+    <select id="free-${gid}">${opts}</select>
+    <div class="free-qty">จำนวนของแถม: <b>${free} แพ็ก</b></div>
+  </div>`;
  }).join('');
 }
 function showOrder(){
@@ -150,4 +186,4 @@ function exportOrderHistory(){
  const rows=[];h.forEach(d=>d.items.forEach(x=>rows.push({'เลขที่คำสั่งซื้อ':d.orderNo,'วันที่':new Date(d.date).toLocaleString('th-TH'),'ลูกค้า':d.customerName,'รายการที่':x.itemNo,'สินค้า':x.product,'จำนวนซื้อ':x.qty,'ของแถม':x.free,'ยอดชำระ':x.amount,'กลุ่มโปร':x.promoGroup})));
  const ws=XLSX.utils.json_to_sheet(rows),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,'Orders');XLSX.writeFile(wb,`PAm_Order_History_${new Date().toISOString().slice(0,10)}.xlsx`);
 }
-renderProducts();renderCart();
+renderProducts();renderCart();checkLogin();
