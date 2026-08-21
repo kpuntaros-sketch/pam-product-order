@@ -6,7 +6,7 @@ const products=[
     "pack": 1,
     "ltp": 500.0,
     "price": 480.0,
-    "bonus": "10 แถม 1   / 50 แถม 6  / 100 แถม 15",
+    "bonus": "10 แถม 1 / 50 แถม 6 / 100 แถม 15",
     "bestSeller": true,
     "image": "assets/excel_row_3.png",
     "promoGroup": null
@@ -30,7 +30,7 @@ const products=[
     "pack": 1,
     "ltp": 329.0,
     "price": 329.0,
-    "bonus": "10 แถม 1",
+    "bonus": "10 แถม 1",
     "bestSeller": true,
     "image": "assets/excel_row_5.png",
     "promoGroup": null
@@ -42,7 +42,7 @@ const products=[
     "pack": 1,
     "ltp": 950.0,
     "price": 888.0,
-    "bonus": "10 แถม 1",
+    "bonus": "10 แถม 1",
     "bestSeller": true,
     "image": "assets/excel_row_6.png",
     "promoGroup": null
@@ -54,7 +54,7 @@ const products=[
     "pack": 1,
     "ltp": 2800.0,
     "price": 2800.0,
-    "bonus": "10 แถม 1",
+    "bonus": "10 แถม 1",
     "bestSeller": false,
     "image": "assets/excel_row_7.png",
     "promoGroup": null
@@ -78,10 +78,10 @@ const products=[
     "pack": 1,
     "ltp": 600.0,
     "price": 600.0,
-    "bonus": "10 แถม 3",
+    "bonus": "10 แถม 3",
     "bestSeller": true,
     "image": "assets/excel_row_9.png",
-    "promoGroup": "G7-8"
+    "promoGroup": null
   },
   {
     "id": 10,
@@ -90,10 +90,10 @@ const products=[
     "pack": 30,
     "ltp": 1920.0,
     "price": 1400.0,
-    "bonus": "10 แถม 1 (รายการที่ 7,8 รวมกันได้)",
+    "bonus": "10 แถม 1 (รายการที่ 8,9 รวมกันได้)",
     "bestSeller": true,
     "image": "assets/excel_row_10.png",
-    "promoGroup": "G7-8"
+    "promoGroup": "G8-9"
   },
   {
     "id": 11,
@@ -105,7 +105,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_11.png",
-    "promoGroup": "G9-10-11-12"
+    "promoGroup": "G8-9"
   },
   {
     "id": 12,
@@ -114,10 +114,10 @@ const products=[
     "pack": 10,
     "ltp": 1300.0,
     "price": 1000.0,
-    "bonus": "10 แถม 1 (รายการที่ 9,10,11,12 รวมกันได้)",
+    "bonus": "10 แถม 1 (รายการที่ 10,11,12,13 รวมกันได้)",
     "bestSeller": false,
     "image": "assets/excel_row_12.png",
-    "promoGroup": "G9-10-11-12"
+    "promoGroup": "G10-11-12-13"
   },
   {
     "id": 13,
@@ -129,7 +129,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_13.png",
-    "promoGroup": "G9-10-11-12"
+    "promoGroup": "G10-11-12-13"
   },
   {
     "id": 14,
@@ -141,7 +141,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_14.png",
-    "promoGroup": "G9-10-11-12"
+    "promoGroup": "G10-11-12-13"
   },
   {
     "id": 15,
@@ -153,7 +153,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_15.png",
-    "promoGroup": "G13-14-15-16"
+    "promoGroup": "G10-11-12-13"
   },
   {
     "id": 16,
@@ -162,10 +162,10 @@ const products=[
     "pack": 30,
     "ltp": 1950.0,
     "price": 1400.0,
-    "bonus": "10 แถม 1 (รายการที่ 13,14,15,16 รวมกันได้)",
+    "bonus": "10 แถม 1 (รายการที่ 14,15,16,17 รวมกันได้)",
     "bestSeller": false,
     "image": "assets/excel_row_16.png",
-    "promoGroup": "G13-14-15-16"
+    "promoGroup": "G14-15-16-17"
   },
   {
     "id": 17,
@@ -177,7 +177,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_17.png",
-    "promoGroup": "G13-14-15-16"
+    "promoGroup": "G14-15-16-17"
   },
   {
     "id": 18,
@@ -189,7 +189,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_18.png",
-    "promoGroup": "G13-14-15-16"
+    "promoGroup": "G14-15-16-17"
   },
   {
     "id": 19,
@@ -201,7 +201,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_19.png",
-    "promoGroup": null
+    "promoGroup": "G14-15-16-17"
   },
   {
     "id": 20,
@@ -210,7 +210,7 @@ const products=[
     "pack": 1,
     "ltp": 300.0,
     "price": 300.0,
-    "bonus": "10 แถม 3",
+    "bonus": "10 แถม 3",
     "bestSeller": false,
     "image": "assets/excel_row_20.png",
     "promoGroup": null
@@ -222,7 +222,7 @@ const products=[
     "pack": 1,
     "ltp": 280.0,
     "price": 280.0,
-    "bonus": "10 แถม 3",
+    "bonus": "10 แถม 3",
     "bestSeller": false,
     "image": "assets/excel_row_21.png",
     "promoGroup": null
@@ -234,7 +234,7 @@ const products=[
     "pack": 1,
     "ltp": 300.0,
     "price": 300.0,
-    "bonus": "10 แถม 3",
+    "bonus": "10 แถม 3",
     "bestSeller": false,
     "image": "assets/excel_row_22.jpeg",
     "promoGroup": null
@@ -357,7 +357,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_32.png",
-    "promoGroup": "G30-31"
+    "promoGroup": null
   },
   {
     "id": 33,
@@ -366,10 +366,10 @@ const products=[
     "pack": 5,
     "ltp": 780.0,
     "price": 600.0,
-    "bonus": "10 แถม 1 (รายการที่ 30,31 รวมกันได้)",
+    "bonus": "10 แถม 1 (รายการที่ 31,32 รวมกันได้)",
     "bestSeller": true,
     "image": "assets/excel_row_33.png",
-    "promoGroup": "G30-31"
+    "promoGroup": "G31-32"
   },
   {
     "id": 34,
@@ -381,7 +381,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_34.png",
-    "promoGroup": "G32-33"
+    "promoGroup": "G31-32"
   },
   {
     "id": 35,
@@ -390,10 +390,10 @@ const products=[
     "pack": 30,
     "ltp": 2050.0,
     "price": 1400.0,
-    "bonus": "10 แถม 1 (รายการที่ 32,33 รวมกันได้)",
+    "bonus": "10 แถม 1 (รายการที่ 33,34 รวมกันได้)",
     "bestSeller": true,
     "image": "assets/excel_row_35.png",
-    "promoGroup": "G32-33"
+    "promoGroup": "G33-34"
   },
   {
     "id": 36,
@@ -405,7 +405,7 @@ const products=[
     "bonus": "",
     "bestSeller": true,
     "image": "assets/excel_row_36.png",
-    "promoGroup": null
+    "promoGroup": "G33-34"
   },
   {
     "id": 37,
@@ -441,7 +441,7 @@ const products=[
     "bonus": "",
     "bestSeller": false,
     "image": "assets/excel_row_39.png",
-    "promoGroup": "G37-38-39"
+    "promoGroup": null
   },
   {
     "id": 40,
@@ -450,10 +450,10 @@ const products=[
     "pack": 10,
     "ltp": 1500.0,
     "price": 1188.0,
-    "bonus": "10 แถม 1 (รายการที่ 37,38,39 รวมกันได้)",
+    "bonus": "10 แถม 1 (รายการที่ 38,39,40 รวมกันได้)",
     "bestSeller": false,
     "image": "assets/excel_row_40.png",
-    "promoGroup": "G37-38-39"
+    "promoGroup": "G38-39-40"
   },
   {
     "id": 41,
@@ -465,7 +465,7 @@ const products=[
     "bonus": "",
     "bestSeller": false,
     "image": "assets/excel_row_41.png",
-    "promoGroup": "G37-38-39"
+    "promoGroup": "G38-39-40"
   },
   {
     "id": 42,
@@ -477,7 +477,7 @@ const products=[
     "bonus": "",
     "bestSeller": false,
     "image": "assets/excel_row_42.png",
-    "promoGroup": null
+    "promoGroup": "G38-39-40"
   },
   {
     "id": 43,
@@ -505,55 +505,55 @@ const products=[
   }
 ];
 const promoGroups={
-  "G7-8": {
+  "G8-9": {
     "members": [
-      7,
-      8
+      8,
+      9
     ],
     "buy": 10,
     "free": 1
   },
-  "G9-10-11-12": {
+  "G10-11-12-13": {
     "members": [
-      9,
       10,
       11,
-      12
+      12,
+      13
     ],
     "buy": 10,
     "free": 1
   },
-  "G13-14-15-16": {
+  "G14-15-16-17": {
     "members": [
-      13,
       14,
       15,
-      16
+      16,
+      17
     ],
     "buy": 10,
     "free": 1
   },
-  "G30-31": {
+  "G31-32": {
     "members": [
-      30,
-      31
+      31,
+      32
     ],
     "buy": 10,
     "free": 1
   },
-  "G32-33": {
+  "G33-34": {
     "members": [
-      32,
-      33
+      33,
+      34
     ],
     "buy": 10,
     "free": 1
   },
-  "G37-38-39": {
+  "G38-39-40": {
     "members": [
-      37,
       38,
-      39
+      39,
+      40
     ],
     "buy": 10,
     "free": 1
