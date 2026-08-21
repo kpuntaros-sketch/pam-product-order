@@ -57,3 +57,11 @@
 ## Insert item #2
 จัดลำดับสินค้าใหม่ให้รายการ #2 `PRONTOSAN WOUND SOL 40ML`
 แสดงต่อจากรายการ #1 และก่อนรายการ #3 บนหน้าเว็บ
+
+
+## Image mapping fix
+รูปสินค้าอ้างอิงตำแหน่งรูปจริงใน `ราคา P'Am 140826 rev(1).xlsx`
+โดยจับคู่ item #N กับ Excel row N+2 และ drawing anchor ของรูปโดยตรง
+
+Mapped images: 41
+Items without a browser-compatible embedded image: [37]
